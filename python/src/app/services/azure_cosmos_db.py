@@ -1,8 +1,8 @@
 import logging
 import os
+import re
 from datetime import datetime
 from typing import List, Dict
-import re
 
 from azure.cosmos import CosmosClient, PartitionKey
 from azure.identity import DefaultAzureCredential
@@ -51,6 +51,7 @@ try:
 except Exception as e:
     print(f"[ERROR] Error initializing Cosmos DB Containers: {e}")
     raise e
+
 
 
 def vector_search(vectors, accountType):

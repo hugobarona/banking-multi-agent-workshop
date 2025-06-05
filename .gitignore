@@ -17,7 +17,8 @@ project.lock.json
 /secrets
 /data
 .secrets
-appsettings.json
+#appsettings.json
+appsettings.development.json
 local.settings.json
 
 node_modules
@@ -36,8 +37,8 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
-[Ll]og/
-[Ll]ogs/
+#[Ll]og/
+#[Ll]ogs/
 csx
 .vs
 edge
@@ -99,5 +100,4 @@ __queuestorage__
 __azurite_db*__.json
 /csharp/src/ChatAPI/appsettings.development.json
 /csharp/test.ps1
-/frontend/src/environments/environment.ts
 /frontend/src/environments/environment.prod.ts

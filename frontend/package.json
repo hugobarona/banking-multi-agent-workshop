@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -24,13 +24,14 @@
     "axios": "^1.7.7",
     "fetch": "^1.1.0",
     "marked": "^15.0.0",
+    "multi-agent-app": "file:",
     "ngx-markdown": "^19.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.1.8",
+    "@angular-devkit/build-angular": "^19.0.4",
     "@angular/cli": "^19.0.4",
     "@angular/compiler-cli": "^19.0.0",
     "@types/jasmine": "~5.1.0",
