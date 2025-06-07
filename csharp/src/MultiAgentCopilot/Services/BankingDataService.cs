@@ -11,13 +11,13 @@ using MultiAgentCopilot.Models.Banking;
 using PartitionKey = Microsoft.Azure.Cosmos.PartitionKey;
 
 using Microsoft.SemanticKernel;
-using Microsoft.SemanticKernel.Connectors.AzureCosmosDBNoSQL;
 
 using System.Text.Json;
 
 using Microsoft.SemanticKernel.Connectors.AzureOpenAI;
 using Microsoft.Extensions.VectorData;
 using System.Linq.Expressions;
+using Microsoft.SemanticKernel.Connectors.CosmosNoSql;
 
 
 namespace MultiAgentCopilot.Services
@@ -28,8 +28,8 @@ namespace MultiAgentCopilot.Services
         private readonly Container _userData;
         private readonly Container _requestData;
         private readonly Container _offerData;
-
-        private readonly AzureCosmosDBNoSQLVectorStoreRecordCollection<OfferTerm> _offerDataVectorStore;
+        
+        private readonly CosmosNoSqlCollection<string, OfferTerm> _offerDataVectorStore;
         private readonly AzureOpenAITextEmbeddingGenerationService _textEmbeddingGenerationService;
 
         private readonly Database _database;
@@ -81,8 +81,8 @@ namespace MultiAgentCopilot.Services
                     credential: credential);
 
             var jsonSerializerOptions = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
-            var vectorStoreOptions = new AzureCosmosDBNoSQLVectorStoreRecordCollectionOptions<OfferTerm> { PartitionKeyPropertyName = "TenantId", JsonSerializerOptions = jsonSerializerOptions };
-            _offerDataVectorStore = new AzureCosmosDBNoSQLVectorStoreRecordCollection<OfferTerm>(_database, _offerData.Id, vectorStoreOptions);
+            var vectorStoreOptions = new CosmosNoSqlCollectionOptions { PartitionKeyPropertyName = "TenantId", JsonSerializerOptions = jsonSerializerOptions };
+            _offerDataVectorStore = new CosmosNoSqlCollection<string, OfferTerm>(_database, _offerData.Id, vectorStoreOptions);
 
             _logger.LogInformation("Banking service initialized.");
         }
@@ -109,15 +109,14 @@ namespace MultiAgentCopilot.Services
                 {
                     VectorProperty = term => term.Vector, // Correctly specify the vector property as a lambda expression
                     Filter = linqFilter, // Use the LINQ expression here
-                    Top = 10,
                     IncludeVectors = false
                 };
         
         
-                var searchResults = await _offerDataVectorStore.VectorizedSearchAsync(embedding, options);
+                var searchResults = _offerDataVectorStore.SearchAsync(embedding, 10, options);
         
                 List<OfferTerm> offerTerms = new();
-                await foreach (var result in searchResults.Results)
+                await foreach (var result in searchResults)
                 {
                     offerTerms.Add(result.Record);
                 }

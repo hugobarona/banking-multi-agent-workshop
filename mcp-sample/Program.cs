@@ -8,8 +8,8 @@ using ModelContextProtocol.Client;
 
 // Populate values from your OpenAI deployment
 var modelId = "gpt-4o";
-var endpoint = "";
-var apiKey = "";
+var endpoint = "https://openai-pvsc5rptcwrkg.openai.azure.com/";
+var apiKey = "7ot0sKN53KhXZhr87jeu5u9gm4VHOFucpd3ZMjdEz2azN1tOykbSJQQJ99BEACHYHv6XJ3w3AAABACOG0Yii";
 
 // Create a kernel with Azure OpenAI chat completion
 var builder = Kernel.CreateBuilder().AddAzureOpenAIChatCompletion(modelId, endpoint, apiKey);

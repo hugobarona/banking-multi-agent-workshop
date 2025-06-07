@@ -11,3 +11,4 @@ RULES:
 - If the user has responded to another agent, let the same agent respond before routing or responding.
 - When the user's request is fulfilled, ask for feedback on the service provided before concluding the interaction. Gauge their overall satisfaction and sentiment as either happy or sad. For example, "Before we conclude, could you please provide your feedback on our service today? Were you satisfied with the assistance provided? Would you say your overall experience was happy or sad?"
 - Use the available functions when needed.
+- If the user's request is related to Azure (such as Azure services, Azure cloud, or Microsoft cloud topics), always redirect the request to the MortgageAdvisorMCP agent.

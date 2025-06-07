@@ -32,18 +32,19 @@
     <PackageReference Include="Azure.AI.OpenAI" Version="2.2.0-beta.4" />
     <PackageReference Include="Azure.Identity" Version="1.14.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.48.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.16" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.51.0" />
     <PackageReference Include="Microsoft.Extensions.AI" Version="9.5.0" />
     <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="9.5.0-preview.1.25265.7" />
-    <PackageReference Include="Microsoft.SemanticKernel" Version="1.47.0" />
-    <PackageReference Include="Microsoft.SemanticKernel.Agents.Core" Version="1.47.0" />
-    <PackageReference Include="Microsoft.SemanticKernel.Connectors.AzureCosmosDBNoSQL" Version="1.47.0-preview" />
-    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.47.0" />
+    <PackageReference Include="Microsoft.Extensions.VectorData.Abstractions" Version="9.5.0" />
+    <PackageReference Include="Microsoft.SemanticKernel" Version="1.55.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Agents.Core" Version="1.55.0" />
+    <PackageReference Include="Microsoft.SemanticKernel.Connectors.CosmosNoSql" Version="1.55.0-preview" />
+    <PackageReference Include="Microsoft.SemanticKernel.Core" Version="1.55.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.2" />
     <PackageReference Include="ModelContextProtocol" Version="0.2.0-preview.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.4" />
   </ItemGroup>
 
   <ItemGroup>
