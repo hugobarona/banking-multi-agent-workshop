@@ -7,6 +7,6 @@
         public required string Name { get; set; } = string.Empty;
         public required string Email { get; set; }
         public required string PhoneNumber { get; set; }
-        public required Dictionary<string,object> Attributes { get; set; }
+        public Dictionary<string,object> Attributes { get; set; }
     }
 }

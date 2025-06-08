@@ -121,6 +121,7 @@ namespace MultiAgentCopilot.Factories
                     var MortgageAdvisorMCPPlugin = new MortgageAdvisorMCPPlugin(loggerFactory.CreateLogger<MortgageAdvisorMCPPlugin>(), bankService, tenantId, userId, mcpClient);
                     var tools = MortgageAdvisorMCPPlugin.GetAzureMcpTools(mcpClient).GetAwaiter().GetResult();
                     agentKernel.Plugins.AddFromFunctions("MAMcp", tools.Select(aiFunction => aiFunction.WithName(aiFunction.Name.Replace('-', '_')).AsKernelFunction()));
+                    agentKernel.Plugins.AddFromObject(MortgageAdvisorMCPPlugin);
                     break;
                 default:
                     throw new ArgumentException("Invalid plugin name");

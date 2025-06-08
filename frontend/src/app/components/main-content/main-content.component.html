@@ -50,7 +50,7 @@
                 <button mat-icon-button class="custom-icon-button">
                   <mat-icon class="medium-icon">assistant</mat-icon>
                 </button>
-                <p class="user-text">{{ conversation.completion }}</p>
+                <p class="user-text" [innerHTML]="conversation.completion"></p>
 
                 <div class="reaction-buttons">
                   <button mat-icon-button class="reaction-btn">

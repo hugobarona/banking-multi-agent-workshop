@@ -146,15 +146,22 @@ namespace MultiAgentCopilot.Services
             }
         }
 
-        public async Task<BankUser> GetUserAsync(string tenantId, string userId)
+        public async Task<BankUser?> GetUserAsync(string tenantId, string userName)
         {
             try
             {
                 var partitionKey = PartitionManager.GetUserDataFullPK(tenantId);
-
-                return await _userData.ReadItemAsync<BankUser>(
-                       id: userId,
-                       partitionKey: partitionKey);
+                var query = new QueryDefinition("SELECT * FROM c WHERE c.name = @name")
+                    .WithParameter("@name", userName);
+                var iterator = _userData.GetItemQueryIterator<BankUser>(query, null, new QueryRequestOptions { PartitionKey = partitionKey });
+                while (iterator.HasMoreResults)
+                {
+                    var response = await iterator.ReadNextAsync();
+                    var user = response.FirstOrDefault();
+                    if (user != null)
+                        return user;
+                }
+                return null;
             }
             catch (CosmosException ex)
             {
